@@ -1,5 +1,5 @@
 var default_borders = new Borders();
-var bar_interval = 1.;
+var bar_interval = 2.;
 var row_interval = 1 / 16;
 var container_width = 864;
 var container_bar_height = 480;
