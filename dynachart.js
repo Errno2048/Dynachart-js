@@ -466,15 +466,22 @@ var Dynachart = (function() {
             const new_element = document.createElement("note");
             note_container.appendChild(new_element);
             new_element.setAttribute("type", note.type);
+            const css_style = window.getComputedStyle(new_element);
+            const left_width = _safe_to_float(css_style.getPropertyValue("border-left-width"), 0.),
+                right_width = _safe_to_float(css_style.getPropertyValue("border-right-width"), 0.),
+                top_width = _safe_to_float(css_style.getPropertyValue("border-top-width"), 0.),
+                bottom_width = _safe_to_float(css_style.getPropertyValue("border-bottom-width"), 0.);
             new_element.style.left = 100 * note.x + "%";
-            new_element.style.bottom = 100 * note.y / total_time + "%";
-            let border_width = (new_element.style.borderLeftWidth ? new_element.style.borderLeftWidth : 0) +
-                (new_element.style.borderRightWidth ? new_element.style.borderRightWidth : 0);
+            new_element.style.bottom = 100 * note.y / total_time + "%"
+            let border_width = (left_width ? left_width : 0) + (right_width ? right_width : 0);
             new_element.style.width = border_width > 0 ?
                 "calc(" + (100 * note.width) + "% - " + border_width + "px)" :
                 (100 * note.width) + "%";
             if (note.height != null) {
-                new_element.style.height = (100 * Math.max(note.height, row_interval / 4) / total_time) + "%";
+                let height = 100 * Math.max(note.height, row_interval / 4) / total_time;
+                let border_height = (top_width ? top_width : 0) + (bottom_width ? bottom_width : 0);
+                new_element.style.height = border_height > 0 ? "calc(" + height + "% - " + (border_height / 2) + "px)" :
+                    height + "%";
             }
         });
     }
