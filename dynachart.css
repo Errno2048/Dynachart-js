@@ -16,6 +16,29 @@
     height: 100%;
 }
 
+.note-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.text-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.text-time {
+    position: absolute;
+    transform: translate(-4px, -4px);
+    font: 1.2em "Arial", sans-serif;
+    color: #ffffff;
+}
+
 column-line {
     display: block;
     background-clip: content-box;
@@ -47,14 +70,6 @@ bar-line {
     width: 100%;
     height: 2px;
     transform: translate(0, 50%);
-}
-
-.note-container {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
 }
 
 note[type="0"] {

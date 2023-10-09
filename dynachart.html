@@ -11,7 +11,7 @@
     <div id="chart-container" style="width: 0; height: 0;"></div>
     <script src="./dynachart.js"></script>
     <script>
-        const dynachart = new Dynachart();
+        const painter = Dynachart.painter();
         const file_input = document.getElementById("file-input");
         file_input.addEventListener("change", (event) => {
             const selected_file = event.target.files[0];
@@ -19,8 +19,8 @@
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     const content = event.target.result;
-                    let chart = parse(content);
-                    dynachart.draw(document.getElementById("chart-container"), chart);
+                    let chart = Dynachart.parse(content);
+                    painter.draw(document.getElementById("chart-container"), chart);
                 };
                 reader.readAsText(selected_file);
             }
