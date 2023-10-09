@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynachart</title>
+    <link rel="stylesheet" href="./dynachart.css">
+</head>
+<body>
+    <form><input type="file" id="file-input" /></form>
+    <div id="chart-container" style="width: 0; height: 0;"></div>
+    <script src="./parser.js"></script>
+    <script src="./dynachart.js"></script>
+    <script>
+        const file_input = document.getElementById("file-input");
+        file_input.addEventListener("change", (event) => {
+            const selected_file = event.target.files[0];
+            if (selected_file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const content = event.target.result;
+                    let chart = parse(content);
+                    load_chart(chart);
+                };
+                reader.readAsText(selected_file);
+            }
+        });
+    </script>
+</body>
+</html>
