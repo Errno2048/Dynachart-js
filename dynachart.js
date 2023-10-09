@@ -530,6 +530,10 @@ var Dynachart = (function() {
         }
 
         draw (container, chart) {
+            if (!(chart instanceof Chart)) {
+                chart = parse(chart);
+            }
+
             let containers = _clear(container);
             let bar_container = containers[0];
             let note_container = containers[1];

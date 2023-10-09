@@ -18,8 +18,7 @@
             if (selected_file) {
                 const reader = new FileReader();
                 reader.onload = (event) => {
-                    const content = event.target.result;
-                    let chart = Dynachart.parse(content);
+                    const chart = event.target.result;
                     painter.draw(document.getElementById("chart-container"), chart);
                 };
                 reader.readAsText(selected_file);
