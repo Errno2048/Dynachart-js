@@ -34,6 +34,7 @@
     transform: translate(-4px, -4px);
     font: 1.2em "Arial", sans-serif;
     color: #ffffff;
+    user-select: none;
 }
 
 column-line {
