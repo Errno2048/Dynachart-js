@@ -2,12 +2,13 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynachart</title>
     <link rel="stylesheet" href="./dynachart.css">
 </head>
-<body>
-    <form><input type="file" id="file-input" /></form>
-    <div id="chart-container" style="width: 0; height: 0;"></div>
+<body style="background-color: #000000;">
+    <form><input type="file" id="file-input" style="position: absolute;"/></form>
+    <div id="chart-container" style="position: absolute; left: 50%; transform: translate(-50%, 0);"></div>
     <script src="./dynachart.js"></script>
     <script>
         const painter = Dynachart.painter();
@@ -18,7 +19,10 @@
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     const chart = event.target.result;
-                    painter.draw(document.getElementById("chart-container"), chart);
+                    const container = document.getElementById("chart-container");
+                    file_input.style.display = 'none';
+                    painter.draw(container, chart);
+                    window.scrollTo(0, parseFloat(container.style.height.substring(0, container.style.height.length - 2)));
                 };
                 reader.readAsText(selected_file);
             }

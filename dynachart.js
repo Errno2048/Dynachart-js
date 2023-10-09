@@ -432,7 +432,7 @@ var Dynachart = (function() {
         const bar_row_ratio = bar_interval / row_interval;
         const row_size = bar_size / bar_row_ratio;
 
-        for (let i = 0; i < row_number; ++i) {
+        for (let i = 0; i <= row_number; ++i) {
             if (Math.abs(i - Math.round(i / bar_row_ratio) * bar_row_ratio) < 1e-4)
                 continue;
 
@@ -441,17 +441,19 @@ var Dynachart = (function() {
             new_element.style.bottom = (i * row_size) + "%";
         }
 
-        for (let i = 0; i < bar_number; ++i) {
+        for (let i = 0; i <= bar_number; ++i) {
             const new_element = document.createElement("bar-line");
             bar_container.appendChild(new_element);
             new_element.style.bottom = (i * bar_size) + "%";
         }
 
         [
+            printer.borders.left_cap_line_ratio,
             printer.borders.left_border_line_ratio,
             printer.borders.front_left_line_ratio,
             printer.borders.front_right_line_ratio,
-            printer.borders.right_border_line_ratio
+            printer.borders.right_border_line_ratio,
+            printer.borders.right_cap_line_ratio
         ].forEach((value) => {
             const new_element = document.createElement("column-line");
             bar_container.appendChild(new_element);
