@@ -475,7 +475,7 @@ var Dynachart = (function() {
             new_element.style.bottom = 100 * note.y / total_time + "%"
             let border_width = (left_width ? left_width : 0) + (right_width ? right_width : 0);
             new_element.style.width = border_width > 0 ?
-                "calc(" + (100 * note.width) + "% - " + border_width + "px)" :
+                "calc(" + (100 * note.width) + "% - " + (border_width / 2) + "px)" :
                 (100 * note.width) + "%";
             if (note.height != null) {
                 let height = 100 * Math.max(note.height, row_interval / 4) / total_time;
