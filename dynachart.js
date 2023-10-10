@@ -17,8 +17,8 @@ var Dynachart = (function() {
         static get SIDE_LEFT() { return -1; }
         static get SIDE_FRONT() { return 0; }
         static get SIDE_RIGHT() { return 1; }
-        static get NOTE_NORMAL() { return 1; }
-        static get NOTE_CHAIN() { return 0; }
+        static get NOTE_NORMAL() { return 0; }
+        static get NOTE_CHAIN() { return 1; }
         static get NOTE_HOLD() { return 2; }
 
         constructor(position, width = 1.0, side = 0, type = 0, start = 0., end = null) {
@@ -36,10 +36,20 @@ var Dynachart = (function() {
     }
 
     function _note_sort (a, b) {
-        if (a.type !== b.type) {
-            return b.type - a.type;
+        if (a.side !== b.side) {
+            if (a.side === Note.SIDE_FRONT) return 1;
+            if (b.side === Note.SIDE_FRONT) return -1;
+            if (a.side === Note.SIDE_LEFT) return -1;
+            return 1;
         }
-        return a.start - b.start;
+        if (a.type !== b.type) {
+            if (a.type === Note.NOTE_HOLD) return -1;
+            if (b.type === Note.NOTE_HOLD) return 1;
+            if (a.type === Note.NOTE_NORMAL) return -1;
+            return 1;
+        }
+        if (a.start !== b.start) return a.start - b.start;
+        return 0;
     }
 
     class Chart {
@@ -183,6 +193,9 @@ var Dynachart = (function() {
             _xml_read_notes(chart.notes, left_notes, Note.SIDE_LEFT),
             _xml_read_notes(chart.notes, right_notes, Note.SIDE_RIGHT)
         ));
+
+        chart.notes.sort(_note_sort);
+
         return chart;
     }
 
@@ -283,6 +296,8 @@ var Dynachart = (function() {
             _json_read_notes(chart.notes, left_notes, Note.SIDE_LEFT),
             _json_read_notes(chart.notes, right_notes, Note.SIDE_RIGHT)
         ));
+
+        chart.notes.sort(_note_sort);
 
         return chart;
     }

@@ -71,31 +71,6 @@ bar-line {
 }
 
 note[type="0"] {
-    z-index: 3;
-    display: block;
-    background-color: #ff6363;
-    border: none;
-    border-radius: 2px;
-    position: absolute;
-    height: 2px;
-    transform: translate(0, 50%);
-}
-
-note[type="0"]::after {
-    z-index: 3;
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-    width: 5px;
-    height: 5px;
-    border: 2px solid #ff6363;
-    background: #ff6363;
-    box-sizing: border-box;
-}
-
-note[type="1"] {
     z-index: 2;
     display: block;
     background-color: #00ffff;
@@ -104,6 +79,31 @@ note[type="1"] {
     position: absolute;
     height: 4px;
     transform: translate(0, 50%);
+}
+
+note[type="1"] {
+    z-index: 3;
+    display: block;
+    background-color: #ff3333;
+    border: none;
+    border-radius: 2px;
+    position: absolute;
+    height: 2px;
+    transform: translate(0, 50%);
+}
+
+note[type="1"]::after {
+    z-index: 3;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 5px;
+    height: 5px;
+    border: 2px solid #ff3333;
+    background: #ff3333;
+    box-sizing: border-box;
 }
 
 note[type="2"] {
